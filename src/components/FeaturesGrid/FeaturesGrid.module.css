@@ -1,0 +1,83 @@
+.section {
+  padding: 4rem 0 8rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+}
+
+.card {
+  background: #0b101b; /* Darker than body */
+  border: 1px solid var(--border);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  border-color: rgba(51, 144, 236, 0.4);
+}
+
+/* Specific Card Spans */
+.cardGlobal {
+  grid-column: span 12;
+}
+
+.cardConfig {
+  grid-column: span 12;
+}
+
+.cardSecure {
+  grid-column: span 12;
+}
+
+.cardInsights {
+  grid-column: span 12;
+}
+
+@media (min-width: 768px) {
+  .cardGlobal { grid-column: span 7; }
+  .cardConfig { grid-column: span 5; }
+  .cardSecure { grid-column: span 5; }
+  .cardInsights { grid-column: span 7; }
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.cardDesc {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+/* Graphical elements placeholders */
+.visual {
+  justify-self: flex-end;
+  height: 150px;
+  margin-top: 2rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 0.75rem;
+  border: 1px dashed var(--border);
+}

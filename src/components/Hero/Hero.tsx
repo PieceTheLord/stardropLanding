@@ -11,7 +11,7 @@ export const Hero = () => {
   const sendWaitlistUser = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/api/waitlist_add", {
+      const response = await fetch("https://stardrop-beta.vercel.app/api/waitlist_add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

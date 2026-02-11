@@ -3,11 +3,37 @@
 import { Button } from "@/components/ui/Button/Button";
 
 import styles from "./Hero.module.css";
+import { useState } from "react";
+import { Toaster, toast } from 'sonner'
 
 export const Hero = () => {
+  const [email, setEmail] = useState<string>("")
+  const sendWaitlistUser = async (e: React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:3000/api/waitlist_add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email })
+      });
+
+      if (response.ok) {
+        toast.success("Вы успешно добавлены в лист ожидания!");
+        setEmail("");
+      } else {
+        toast.error("Что-то пошло не так. Попробуйте еще раз.");
+      }
+    } catch (error) {
+      toast.error("Произошла ошибка сети. Попробуйте еще раз.");
+    }
+  }
+
   return (
     <section className={styles.hero}>
       <div className="container">
+        <Toaster position="top-center" richColors />
         <div className={styles.badge}>
           ✨ Платформа в раннем доступе
         </div>
@@ -22,11 +48,13 @@ export const Hero = () => {
           прямо вашим подписчикам используя нативные Telegram Stars.
         </p>
 
-        <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
+        <form className={styles.form} onSubmit={(e) => sendWaitlistUser(e)}>
           <input
             type="email"
             placeholder="Введите ваш email"
             className={styles.input}
+            value={email}
+            onChange={e => setEmail(e.target.value)}
             required
           />
           <Button type="submit">
